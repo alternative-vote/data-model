@@ -2,9 +2,9 @@
   "name": "@alternativeVote/data-model",
   "version": "1.0.0",
   "description": "The alternative vote data model",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test/**/*.js | faucet"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "scheming": "^2.1.5"
   },
   "devDependencies": {
+    "faucet": "0.0.1",
     "tape": "^4.5.1"
   }
 }

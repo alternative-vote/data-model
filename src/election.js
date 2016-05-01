@@ -1,19 +1,10 @@
 'use strict';
-const Scheming  = require('scheming');
-const NAMESPACE = 'AlternativeVote'
-const OPTIONS   = { seal : true, strict : false };
+const Scheming = require('scheming');
+const common   = require('./common');
+const people   = require('./people');
 
 const Types = Scheming.TYPES;
-
-const ID = {
-  type    : Types.String,
-  default : '',
-}
-
-const STRING = {
-  type    : Types.String,
-  default : '',
-}
+const Voter = people.Voter;
 
 const START_END_DATE = {
   type    : {
@@ -51,12 +42,6 @@ const STATUS = {
   }
 }
 
-const Voter = Scheming.create(`${NAMESPACE}Voter`, {
-  id    : ID,
-  email : STRING,
-  name  : STRING,
-}, OPTIONS);
-
 const ROLE = {
   isPublic : {
     type    : Types.Boolean,
@@ -78,34 +63,28 @@ const ELECTION_ROLES = {
   default : {}
 }
 
-const Account = Scheming.create(`${NAMESPACE}Account`, {
-  id    : ID,
-  type  : STRING,
-  voter : Voter,
-}, OPTIONS);
-
-const Candidate = Scheming.create(`${NAMESPACE}Candidate`, {
-  id          : ID,
-  name        : STRING,
-  description : STRING,
+const Candidate = Scheming.create(`${common.NAMESPACE}Candidate`, {
+  id          : common.ID,
+  name        : common.STRING,
+  description : common.STRING,
   members     : {
     type    : [Voter],
     default : []
   }
-}, OPTIONS);
+}, common.OPTIONS);
 
-const Ballot = Scheming.create(`${NAMESPACE}Ballot`, {
-  id    : ID,
+const Ballot = Scheming.create(`${common.NAMESPACE}Ballot`, {
+  id    : common.ID,
   voter : Voter,
   votes : {
     type    : [Candidate],
     default : [],
   }
-}, OPTIONS);
+}, common.OPTIONS);
 
-const Category = Scheming.create(`${NAMESPACE}Category`, {
-  id         : ID,
-  name       : STRING,
+const Category = Scheming.create(`${common.NAMESPACE}Category`, {
+  id         : common.ID,
+  name       : common.STRING,
   candidates : {
     type    : [Candidate],
     default : [],
@@ -114,11 +93,11 @@ const Category = Scheming.create(`${NAMESPACE}Category`, {
     type    : [Ballot],
     default : [],
   }
-}, OPTIONS);
+}, common.OPTIONS);
 
-const Election    = Scheming.create(`${NAMESPACE}Election`, {
-  id            : ID,
-  name          : STRING,
+const Election    = Scheming.create(`${common.NAMESPACE}Election`, {
+  id            : common.ID,
+  name          : common.STRING,
   status        : STATUS,
   start         : START_END_DATE,
   end           : START_END_DATE,
@@ -135,9 +114,7 @@ const Election    = Scheming.create(`${NAMESPACE}Election`, {
     type    : [Category],
     default : []
   },
-}, OPTIONS);
+}, common.OPTIONS);
 Election.STATUSES = STATUSES;
 
-module.exports = {
-  Election, Category, Ballot, Candidate, Account, Voter
-}
+module.exports = { Election, Category, Ballot, Candidate,  }
