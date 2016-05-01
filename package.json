@@ -1,0 +1,25 @@
+{
+  "name": "@alternativeVote/data-model",
+  "version": "1.0.0",
+  "description": "The alternative vote data model",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alternative-vote/data-model.git"
+  },
+  "author": "Erin Noe-Payne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alternative-vote/data-model/issues"
+  },
+  "homepage": "https://github.com/alternative-vote/data-model#readme",
+  "dependencies": {
+    "scheming": "^2.1.5"
+  },
+  "devDependencies": {
+    "tape": "^4.5.1"
+  }
+}
